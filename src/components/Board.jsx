@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Square from "./Square";
+import Square, { findNeighbors } from "./Square";
 const squareCount = 20;
 /**
  * 20x20 grid of life-cells
@@ -18,12 +18,30 @@ const Board = ({ stateHooks }) => {
     squares[i] = { ...xy, z }; // update copy
     set({ ...get, squares }); // set state
   };
-
+  /**
+   * toggle neighboring squares
+   * @param {Number} i square index
+   */
+  const toggleNeighbors = ({ i }) => {
+    const hood = get.squares[i].neighbors; // get square by index
+    for (const nbr of hood) {
+      toggle({ i: nbr });
+    }
+  };
+  const toggler = ({ i }) => {
+    const fx = get.clickEffect ? 0 : 1;
+    if (fx === 1) {
+      toggle({ i });
+    } else {
+      toggleNeighbors({ i });
+    }
+  };
   useEffect(() => {
     const squares = [];
     for (let i = 0; i < squareCount; i++) {
       for (let j = 0; j < squareCount; j++) {
-        squares.push({ x: j, y: i, z: 0 });
+        const neighbors = findNeighbors(squareCount, j, i);
+        squares.push({ x: j, y: i, z: 0, neighbors });
       }
     }
     set({ squares });
@@ -32,7 +50,7 @@ const Board = ({ stateHooks }) => {
   return (
     <div className="life-board">
       {get.squares.map((props, key) =>
-        Square({ ...props, toggle, squareCount, key })
+        Square({ ...props, toggler, squareCount, key })
       )}
     </div>
   );
