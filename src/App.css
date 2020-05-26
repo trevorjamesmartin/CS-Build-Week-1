@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.life-cell-dead {
+  color: #282c34;
+  background-color: #282c34;
+  border: 1px slategrey dotted;
+  width: 25px;
+  height: 25px;
+  border-radius: 15%;
+}
+.life-cell-alive {
+  color: blue;
+  background-color: blue;
+  width: 25px;
+  height: 25px;
+  border-radius: 15%;
+}
+
+.life-board {
+  min-width: 500px;
+  min-height: 500px;
+  max-width: 500px;
+  max-height: 500px;
+}
