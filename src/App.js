@@ -15,7 +15,6 @@ function App() {
   const stateHooks = { get: state, set: setState };
   const toggleMode = () => {
     setState({ ...state, clickEffect: state.clickEffect ? 0 : 1 });
-    console.log("toggle mode");
   };
   return (
     <div className="App">

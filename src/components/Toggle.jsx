@@ -4,8 +4,13 @@ const ToggleSwitch = (props) => {
   const { handleOnClick, id } = props;
   return (
     <>
-      <input type="checkbox" id={id} class="checkbox" onClick={handleOnClick} />
-      <label for={id} class="switch" />
+      <input
+        type="checkbox"
+        id={id}
+        className="checkbox"
+        onClick={handleOnClick}
+      />
+      <label htmlFor={id} className="switch" />
     </>
   );
 };
