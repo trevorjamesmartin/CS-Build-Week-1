@@ -17,10 +17,12 @@ function App() {
     setState({ ...state, clickEffect: state.clickEffect ? 0 : 1 });
   };
   const nextHandler = () => {
-    const squares = nextGen([...state.squares]);
+    const gen = nextGen(state.squares);
+    console.log(gen === state.squares);
+    console.log(gen[1], state.squares[1]);
     const generation = state.generation ? state.generation + 1 : 1;
     const clickEffect = state.clickEffect | 0;
-    setState({ squares, generation, clickEffect });
+    setState({ squares: gen, generation, clickEffect });
   };
   return (
     <div className="App">

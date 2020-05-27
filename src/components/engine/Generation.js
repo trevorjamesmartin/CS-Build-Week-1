@@ -63,7 +63,7 @@ function isWestEdge(i, squareCount) {
  * @param {*} squareCount squares per row
  */
 function isEastEdge(i, squareCount) {
-  return ((i + 1) % squareCount === 0) | (squareCount === i);
+  return (i + 1) % squareCount === 0 || squareCount === i;
 }
 
 /**
@@ -134,7 +134,7 @@ function getNeighbors(i, squareCount) {
  */
 function livingNeighborsByIndex(i, squares) {
   return squares[i].neighbors
-    .map((n) => squares[n] && squares[n].z && squares[n].z | 0)
+    .map((n) => squares[n] && squares[n].z && squares[n].z === 1)
     .reduce((a, b) => b + a);
 }
 
@@ -144,59 +144,37 @@ function livingNeighborsByIndex(i, squares) {
  * @param {Array} squares
  */
 function lifeCount(squares) {
-  return squares.map((sq, idx) => sq.z && livingNeighborsByIndex(idx, squares));
+  const cpy = [...squares];
+  return squares.map((sq, idx) => sq.z && livingNeighborsByIndex(idx, cpy));
 }
 
+function countLiving(sq, squares) {
+  return (
+    sq.neighbors
+      .map((n) => squares[n] && squares[n].z && squares[n].z === 1)
+      .reduce((a, b) => b + a) || 0
+  );
+}
 /**
  * apply the rules to this generation and return the result.
  * @param {Array} squares array of life-cells
  */
 function nextGen(squares) {
-  const lc = lifeCount(squares);
-  return squares.map((sq, idx) => {
-    const reborn = ruleOfBirth(lc, idx, sq);
-    if (reborn === false) {
-      return ruleOfSurvival(lc, idx, sq);
+  const clones = [...squares];
+  squares.map((sq, idx) => {
+    const score = countLiving(sq, squares);
+    if (sq.z === DEAD && score === 3) {
+      // raising the dead
+      clones[idx] = { ...sq, z: LIVING };
+    } else if (sq.z === LIVING && (score < 2 || score > 3)) {
+      // starvation & overpopulation
+      clones[idx] = { ...sq, z: DEAD };
+    } else {
+      clones[idx] = sq;
     }
-    return reborn;
+    return true;
   });
-}
-/**
- * If the cell is alive and has 2 or 3 neighbors,
- * then it remains alive. Else it dies.
- * @param {Array} lc result of lifeCount
- * @param {Number} idx index
- * @param {Object} sq Object
- */
-function ruleOfSurvival(lc, idx, sq) {
-  if (isAlive(sq) & hasNeighborCount(lc, idx, [2, 3])) {
-    // if alive and has 2 or 3 neighbors
-    return sq; // then it remains alive.
-  }
-  return { ...sq, z: DEAD }; //  Else it dies.
-}
-
-/**
- * If the cell is dead and has exactly 3 neighbors,
- * then it comes to life. Else if remains dead.
- * @param {Array} lc result of lifeCount
- * @param {Number} idx index
- * @param {Object} sq Object
- */
-function ruleOfBirth(lc, idx, sq) {
-  if (!isAlive(sq) & hasNeighborCount(lc, idx, [3])) {
-    // if dead and exactly 3 living neighbors
-    return { ...sq, z: LIVING }; // it comes to life
-  }
-  return false;
-}
-
-function isAlive(cell) {
-  return cell.z && cell.z === 1;
-}
-
-function hasNeighborCount(lc, idx, arr) {
-  return lc[idx] in arr;
+  return clones;
 }
 
 export {
