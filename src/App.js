@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Board from "./components/Board";
 import ToolBar from "./components/ToolBar";
+import MediaBar from "./components/MediaBar";
 
 const initialState = {
   squares: [],
@@ -25,6 +26,7 @@ function App() {
           generation={state.generation}
         />
         <Board stateHooks={stateHooks} clickEffect={state.clickEffect} />
+        <MediaBar />
       </header>
     </div>
   );

@@ -60,3 +60,31 @@
 .checkbox {
   display: none;
 }
+
+.tool-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.media-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.media-button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 15%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: black;
+  color: white;
+  opacity: 20%;
+}
