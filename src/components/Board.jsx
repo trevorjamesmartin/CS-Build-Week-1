@@ -51,7 +51,7 @@ const Board = ({ stateHooks }) => {
     }
   };
   useEffect(() => {
-    const squares = firstGen(); // the first generation
+    const squares = firstGen(squareCount); // the first generation
     set({ squares });
     console.log("hello world");
   }, [set]);

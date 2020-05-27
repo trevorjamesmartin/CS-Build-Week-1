@@ -16,7 +16,7 @@
 const squareCount = 25;
 const [LIVING, DEAD] = [1, 0];
 
-function firstGen() {
+function firstGen(squareCount) {
   const squares = [];
   for (let i = 0; i < squareCount; i++) {
     for (let j = 0; j < squareCount; j++) {
@@ -133,7 +133,9 @@ function getNeighbors(i, squareCount) {
  * @param {Array} squares array of cells
  */
 function livingNeighborsByIndex(i, squares) {
-  return squares[i].neighbors.map((n) => squares[n].z).reduce((a, b) => b + a);
+  return squares[i].neighbors
+    .map((n) => squares[n] && squares[n].z && squares[n].z | 0)
+    .reduce((a, b) => b + a);
 }
 
 /**
@@ -151,12 +153,50 @@ function lifeCount(squares) {
  */
 function nextGen(squares) {
   const lc = lifeCount(squares);
-  // const nextGen = [];
-  return squares.map((sq, idx) =>
-    sq.z
-      ? { ...sq, z: lc[idx] === 3 ? LIVING : lc[idx] === 2 ? sq.z : DEAD }
-      : sq
-  );
+  return squares.map((sq, idx) => {
+    const reborn = ruleOfBirth(lc, idx, sq);
+    if (reborn === false) {
+      return ruleOfSurvival(lc, idx, sq);
+    }
+    return reborn;
+  });
+}
+/**
+ * If the cell is alive and has 2 or 3 neighbors,
+ * then it remains alive. Else it dies.
+ * @param {Array} lc result of lifeCount
+ * @param {Number} idx index
+ * @param {Object} sq Object
+ */
+function ruleOfSurvival(lc, idx, sq) {
+  if (isAlive(sq) & hasNeighborCount(lc, idx, [2, 3])) {
+    // if alive and has 2 or 3 neighbors
+    return sq; // then it remains alive.
+  }
+  return { ...sq, z: DEAD }; //  Else it dies.
+}
+
+/**
+ * If the cell is dead and has exactly 3 neighbors,
+ * then it comes to life. Else if remains dead.
+ * @param {Array} lc result of lifeCount
+ * @param {Number} idx index
+ * @param {Object} sq Object
+ */
+function ruleOfBirth(lc, idx, sq) {
+  if (!isAlive(sq) & hasNeighborCount(lc, idx, [3])) {
+    // if dead and exactly 3 living neighbors
+    return { ...sq, z: LIVING }; // it comes to life
+  }
+  return false;
+}
+
+function isAlive(cell) {
+  return cell.z && cell.z === 1;
+}
+
+function hasNeighborCount(lc, idx, arr) {
+  return lc[idx] in arr;
 }
 
 export {
