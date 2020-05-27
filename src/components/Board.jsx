@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Square, { findNeighbors } from "./Square";
-import { squareCount } from "./Generation";
+import Square from "./Square";
+import { squareCount, getNeighbors, getIndex } from "./Generation";
 /**
- * 20x20 grid of life-cells
+ * 25x25 grid of cells
  * @param {*} props
  */
 const Board = ({ stateHooks }) => {
@@ -25,7 +25,7 @@ const Board = ({ stateHooks }) => {
   const toggleNeighbors = ({ i }) => {
     const hood = get.squares[i].neighbors; // get square by index
     for (const nbr of hood) {
-      toggle({ i: nbr });
+      toggle({ i: nbr }); // toggle state
     }
   };
   const toggler = ({ i }) => {
@@ -33,6 +33,7 @@ const Board = ({ stateHooks }) => {
     if (fx === 1) {
       toggle({ i });
     } else if (fx === 0) {
+      console.log(get.squares[i].neighbors);
       toggleNeighbors({ i });
     } else {
       // freeze state , run simulator before mutation.
@@ -44,7 +45,9 @@ const Board = ({ stateHooks }) => {
     const squares = [];
     for (let i = 0; i < squareCount; i++) {
       for (let j = 0; j < squareCount; j++) {
-        const neighbors = findNeighbors(squareCount, j, i);
+        const idx = getIndex(squareCount, j, i);
+        const neighbors = getNeighbors(idx, squareCount);
+        // console.log(neighbors);
         squares.push({ x: j, y: i, z: 0, neighbors });
       }
     }
