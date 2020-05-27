@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Square, { findNeighbors } from "./Square";
-const squareCount = 20;
+import { squareCount } from "./Generation";
 /**
  * 20x20 grid of life-cells
  * @param {*} props
@@ -32,8 +32,12 @@ const Board = ({ stateHooks }) => {
     const fx = get.clickEffect ? 0 : 1;
     if (fx === 1) {
       toggle({ i });
-    } else {
+    } else if (fx === 0) {
       toggleNeighbors({ i });
+    } else {
+      // freeze state , run simulator before mutation.
+      // call Generation function
+      console.log("todo");
     }
   };
   useEffect(() => {
