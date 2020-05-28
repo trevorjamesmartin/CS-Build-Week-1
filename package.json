@@ -1,5 +1,5 @@
 {
-  "name": "conways-game",
+  "name": "lambda-react-game-of-life",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
