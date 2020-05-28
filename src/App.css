@@ -10,6 +10,23 @@
   color: white;
 }
 
+@keyframes shiftleft {
+  to {
+    transform: translateX(-3%);
+  }
+}
+@keyframes shiftright {
+  to {
+    transform: translateX(3%);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .life-cell-dead {
   color: #282c34;
   background-color: #282c34;
@@ -20,6 +37,10 @@
 .life-cell-alive {
   color: #7983ff;
   background-color: #7983ff;
+  border-radius: 77% 12% 77% 0% / 77% 12% 77% 0%;
+  animation: shiftleft 1s linear infinite;
+  /* animation: rotate 1s linear infinite; */
+  animation: shiftright 1s linear infinite;
   width: 20px;
   height: 20px;
 }
