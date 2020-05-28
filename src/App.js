@@ -3,7 +3,12 @@ import "./App.css";
 import Board from "./components/Board";
 import ToolBar from "./components/ToolBar";
 import MediaBar from "./components/MediaBar";
-import { nextGen } from "./components/engine/Generation";
+import {
+  nextGen,
+  randomGen,
+  squareCount,
+  firstGen,
+} from "./components/engine/Generation";
 
 const initialState = {
   squares: [],
@@ -41,7 +46,16 @@ function App() {
   const playHandler = () => {
     setState({ ...state, isPlaying: 1 });
   };
-
+  const resetGame = () => {
+    const squares = firstGen(squareCount);
+    const speed = state.speed ? state.speed : 500; // milliseconds
+    setState({ ...initialState, squares, speed });
+  };
+  const randomGame = () => {
+    const squares = randomGen(squareCount);
+    const speed = state.speed ? state.speed : 500; // milliseconds
+    setState({ ...initialState, squares, speed });
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -49,6 +63,9 @@ function App() {
           toggleMode={toggleMode}
           id="toggle"
           generation={state.generation}
+          animSpeed={state.speed}
+          cleanLife={resetGame}
+          randomLife={randomGame}
         />
         <Board stateHooks={stateHooks} clickEffect={state.clickEffect} />
         <MediaBar
@@ -56,7 +73,7 @@ function App() {
           handleStop={stopHandler}
           handlePlay={playHandler}
           isPlaying={state.isPlaying}
-          animSpeed={state.speed}
+          animRate={state.speed}
         />
       </header>
     </div>

@@ -88,13 +88,17 @@
 .tool-bar {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
 .tool-bar-label {
   font-size: large;
+}
+.tool-bar-label-right {
+  font-size: large;
+  text-align: right;
 }
 
 .media-bar {

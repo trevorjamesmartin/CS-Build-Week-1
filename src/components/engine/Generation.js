@@ -28,6 +28,24 @@ function firstGen(squareCount) {
   }
   return squares;
 }
+
+function randomGen(squareCount) {
+  const squares = [];
+  for (let i = 0; i < squareCount; i++) {
+    for (let j = 0; j < squareCount; j++) {
+      const idx = getIndex(squareCount, j, i);
+      const neighbors = getNeighbors(idx, squareCount);
+      // console.log(neighbors);
+      squares.push({
+        x: j,
+        y: i,
+        z: Math.floor(Math.random() * 100) % 2 === 0 ? 1 : 0,
+        neighbors,
+      });
+    }
+  }
+  return squares;
+}
 /**
  * returns true if square is on southern edge
  * @param {Number} i index
@@ -185,4 +203,5 @@ export {
   lifeCount,
   firstGen,
   nextGen,
+  randomGen,
 };

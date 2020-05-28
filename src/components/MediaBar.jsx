@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef } from "react";
 
 const MediaBar = ({
-  animSpeed,
+  animRate,
   isPlaying,
   handleNext,
   handleStop,
@@ -14,14 +14,14 @@ const MediaBar = ({
   useEffect(() => {
     if (isPlaying) {
       if (!speed.current) {
-        speed.current = animSpeed;
+        speed.current = animRate;
       }
       const nextGenTimer = setTimeout(() => {
         cbNextHandler();
       }, speed.current);
       return () => clearTimeout(nextGenTimer);
     }
-  }, [cbNextHandler, isPlaying, animSpeed]);
+  }, [cbNextHandler, isPlaying, animRate]);
   return (
     <span className="media-bar">
       <button
