@@ -23,8 +23,9 @@ function App() {
    */
   const nextHandler = () => {
     const squares = nextGen(state.squares);
+    const speed = state.speed ? state.speed : 500;
     const generation = state.generation ? state.generation + 1 : 1;
-    setState({ ...state, squares, generation });
+    setState({ ...state, squares, generation, speed });
   };
   /**
    * set the value of state.isPlaying
@@ -55,6 +56,7 @@ function App() {
           handleStop={stopHandler}
           handlePlay={playHandler}
           isPlaying={state.isPlaying}
+          animSpeed={state.speed}
         />
       </header>
     </div>
