@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Square from "./Square";
-import { squareCount, firstGen, lifeCount } from "./engine/Generation";
+import { squareCount, firstGen } from "./engine/Generation";
 /**
  * 25x25 grid of cells
  * @param {Object} `stateHooks` { get, set }
@@ -35,14 +35,10 @@ const Board = ({ stateHooks }) => {
         break;
       }
       case 0: {
-        console.log(get.squares[i].neighbors);
         toggleNeighbors({ i });
         break;
       }
       default: {
-        // freeze state , run simulator before mutation.
-        // call Generation function ?
-        console.log("todo");
         break;
       }
     }

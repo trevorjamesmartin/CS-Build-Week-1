@@ -4,7 +4,9 @@ const ToolBar = (props) => {
   return (
     <span className="tool-bar">
       <ToggleSwitch handleOnClick={props.toggleMode} id={props.id} />
-      <label>Generation {props.generation | 0}</label>
+      <label className="tool-bar-label">
+        Generation {props.generation | 0}
+      </label>
     </span>
   );
 };
