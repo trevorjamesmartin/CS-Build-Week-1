@@ -88,9 +88,8 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: black;
-  color: white;
-  opacity: 20%;
+  background-color: slategrey;
+  color: lightblue;
 }
 
 .media-button .is-playing {
@@ -101,7 +100,6 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: black;
-  color: white;
-  opacity: 77%;
+  background-color: lightblue;
+  color: slategrey;
 }
