@@ -161,7 +161,7 @@ function countLiving(sq, squares) {
  */
 function nextGen(squares) {
   const clones = [...squares];
-  squares.map((sq, idx) => {
+  squares.forEach((sq, idx) => {
     const score = countLiving(sq, squares);
     if (sq.z === DEAD && score === 3) {
       // raising the dead
@@ -172,7 +172,7 @@ function nextGen(squares) {
     } else {
       clones[idx] = sq;
     }
-    return true;
+    // return true;
   });
   return clones;
 }

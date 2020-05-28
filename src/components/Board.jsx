@@ -32,9 +32,6 @@ const Board = ({ stateHooks }) => {
     switch (get.clickEffect ? 0 : 1) {
       case 1: {
         toggle({ i });
-        // console.log(livingNeighborsByIndex(i, get.squares));
-        // console.log(lifeCount(get.squares));
-        console.log(lifeCount(get.squares));
         break;
       }
       case 0: {
@@ -44,7 +41,7 @@ const Board = ({ stateHooks }) => {
       }
       default: {
         // freeze state , run simulator before mutation.
-        // call Generation function
+        // call Generation function ?
         console.log("todo");
         break;
       }
