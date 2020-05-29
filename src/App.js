@@ -3,6 +3,7 @@ import "./App.css";
 import Board from "./components/Board";
 import ToolBar from "./components/ToolBar";
 import MediaBar from "./components/MediaBar";
+import Rules from "./components/Rules";
 import {
   nextGen,
   randomGen,
@@ -59,6 +60,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Rules />
         <ToolBar
           toggleMode={toggleMode}
           id="toggle"
