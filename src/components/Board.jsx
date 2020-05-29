@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import Square from "./Square";
 import { squareCount, firstGen } from "./engine/Generation";
 /**
@@ -43,11 +43,14 @@ const Board = ({ stateHooks }) => {
       }
     }
   };
+  const cbFirstGen = useCallback(firstGen, []);
+  const cbState = useCallback(get, []);
+  const cbSetState = useCallback(set, []);
   useEffect(() => {
-    const squares = firstGen(squareCount); // the first generation
-    set({ ...get, squares });
+    const squares = cbFirstGen(squareCount); // the first generation
+    cbSetState({ ...cbState, squares });
     console.log("hello world");
-  }, []);
+  }, [cbFirstGen, cbState, cbSetState]);
   return (
     <div className="life-board">
       {get.squares.map((props, key) =>

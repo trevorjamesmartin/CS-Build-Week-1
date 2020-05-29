@@ -30,10 +30,14 @@ const MediaBar = ({
         className={`media-button${isPlaying ? " is-playing" : ""}`}
         onClick={handlePlay}
       >
-        Play
+        {!isPlaying ? (
+          <i className="fas fa-play"></i>
+        ) : (
+          <i class="fas fa-stop"></i>
+        )}
       </button>
       <button className="media-button" onClick={handleNext}>
-        Next
+        <i className="fas fa-angle-right"></i>
       </button>
       <SpeedLimit changeSpeed={changeSpeed} speedLimit={speedLimit} />
     </span>

@@ -38,9 +38,15 @@
   color: #7983ff;
   background-color: #7983ff;
   border-radius: 77% 12% 77% 0% / 77% 12% 77% 0%;
-  animation: shiftleft 1s linear infinite;
+  /* animation: shiftleft 1s linear infinite; */
   /* animation: rotate 1s linear infinite; */
-  animation: shiftright 1s linear infinite;
+  /* animation: shiftright 1s linear infinite; */
+  transition: transform 0.3s ease;
+  transform: skew(15deg);
+  transform: skewX(15deg);
+  /* transform: skewY(-50deg);
+  transform: skew(90deg, -50deg); */
+
   width: 20px;
   height: 20px;
 }
@@ -138,4 +144,28 @@
   padding-bottom: 0.5rem;
   background-color: lightblue;
   color: slategrey;
+}
+
+.death-button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 15%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: slategrey;
+  color: lightblue;
+}
+
+.random-button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 15%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: slategrey;
+  color: lightblue;
 }

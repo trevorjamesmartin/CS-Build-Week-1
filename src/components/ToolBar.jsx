@@ -12,8 +12,12 @@ const ToolBar = (props) => {
         Generation {props.generation | 0}
       </label>
       <div>
-        <button onClick={props.cleanLife}>clear</button>
-        <button onClick={props.randomLife}>random</button>
+        <button className="death-button" onClick={props.cleanLife}>
+          <i class="fas fa-skull"></i>
+        </button>
+        <button className="random-button" onClick={props.randomLife}>
+          <i class="fas fa-random"></i>
+        </button>
       </div>
     </span>
   );
