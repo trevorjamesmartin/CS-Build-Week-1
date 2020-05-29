@@ -45,9 +45,9 @@ const Board = ({ stateHooks }) => {
   };
   useEffect(() => {
     const squares = firstGen(squareCount); // the first generation
-    set({ squares });
+    set({ ...get, squares });
     console.log("hello world");
-  }, [set]);
+  }, []);
   return (
     <div className="life-board">
       {get.squares.map((props, key) =>

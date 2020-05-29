@@ -15,12 +15,13 @@ const initialState = {
   squares: [],
   clickEffect: 0,
   generation: 0,
-  speed: 1,
+  speed: 500,
   isPlaying: false,
 };
 function App() {
   const [state, setState] = useState(initialState);
   const stateHooks = { get: state, set: setState };
+
   const toggleMode = () => {
     setState({ ...state, clickEffect: state.clickEffect ? 0 : 1 });
   };
@@ -29,33 +30,42 @@ function App() {
    */
   const nextHandler = () => {
     const squares = nextGen(state.squares);
-    const speed = state.speed ? state.speed : 500;
     const generation = state.generation ? state.generation + 1 : 1;
-    setState({ ...state, squares, generation, speed });
+    // const speed = state.speed ? state.speed : 500;
+    setState({
+      ...state,
+      squares,
+      generation,
+    });
+    // setState({ ...state, squares, generation, speed });
   };
   /**
-   * set the value of state.isPlaying
-   * to zero (false).
-   */
-  const stopHandler = () => {
-    setState({ ...state, isPlaying: 0 });
-  };
-  /**
-   * set the value of state.isPlaying
-   * to 1 (true).
+   * toggle the value of state.isPlaying
+   * between 1 (true).
+   * and zero (false).
    */
   const playHandler = () => {
-    setState({ ...state, isPlaying: 1 });
+    setState({ ...state, isPlaying: !state.isPlaying });
   };
   const resetGame = () => {
     const squares = firstGen(squareCount);
-    const speed = state.speed ? state.speed : 500; // milliseconds
-    setState({ ...initialState, squares, speed });
+    setState({
+      ...initialState,
+      squares,
+      speed: state.speed ? state.speed : 500,
+    });
+    // const speed = state.speed ? state.speed : 500; // milliseconds
+    // setState({ ...initialState, squares, speed });
   };
   const randomGame = () => {
     const squares = randomGen(squareCount);
-    const speed = state.speed ? state.speed : 500; // milliseconds
-    setState({ ...initialState, squares, speed });
+    setState({
+      ...initialState,
+      squares,
+      speed: state.speed ? state.speed : 500,
+    });
+    // const speed = state.speed ? state.speed : 500; // milliseconds
+    // setState({ ...initialState, squares, speed });
   };
   return (
     <div className="App">
@@ -72,10 +82,14 @@ function App() {
         <Board stateHooks={stateHooks} clickEffect={state.clickEffect} />
         <MediaBar
           handleNext={nextHandler}
-          handleStop={stopHandler}
+          // handleStop={stopHandler}
           handlePlay={playHandler}
           isPlaying={state.isPlaying}
-          animRate={state.speed}
+          animSpeed={state.speed}
+          speedlimit={state.speed}
+          changeSpeed={(e) =>
+            setState({ ...state, speed: 1001 - Number(e.target.value) })
+          }
         />
       </header>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import ToggleSwitch from "./Toggle";
+
 const ToolBar = (props) => {
   return (
     <span className="tool-bar">

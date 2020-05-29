@@ -1,11 +1,12 @@
 import React, { useEffect, useCallback, useRef } from "react";
-
+import SpeedLimit from "./SpeedLimit";
 const MediaBar = ({
-  animRate,
+  animSpeed,
   isPlaying,
   handleNext,
-  handleStop,
   handlePlay,
+  speedLimit,
+  changeSpeed,
 }) => {
   const cbNextHandler = useCallback(() => {
     isPlaying && handleNext();
@@ -13,15 +14,16 @@ const MediaBar = ({
   const speed = useRef(undefined);
   useEffect(() => {
     if (isPlaying) {
-      if (!speed.current) {
-        speed.current = animRate;
-      }
+      speed.current = animSpeed;
+      // if (!speed.current) {
+      //   speed.current = animSpeed;
+      // }
       const nextGenTimer = setTimeout(() => {
         cbNextHandler();
       }, speed.current);
       return () => clearTimeout(nextGenTimer);
     }
-  }, [cbNextHandler, isPlaying, animRate]);
+  }, [cbNextHandler, isPlaying, animSpeed]);
   return (
     <span className="media-bar">
       <button
@@ -30,12 +32,10 @@ const MediaBar = ({
       >
         Play
       </button>
-      <button className="media-button" onClick={handleStop}>
-        Stop
-      </button>
       <button className="media-button" onClick={handleNext}>
         Next
       </button>
+      <SpeedLimit changeSpeed={changeSpeed} speedLimit={speedLimit} />
     </span>
   );
 };
