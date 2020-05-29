@@ -54,8 +54,7 @@
 .life-rules {
   width: 500px;
   font-size: medium;
-  color: white;
-  opacity: 70%;
+  color: #f6f6f6;
   text-align: left;
 }
 .life-rules-label {
