@@ -5,10 +5,11 @@ const ToolBar = (props) => {
   return (
     <span className="tool-bar">
       <div>
-        <label className="tool-bar-label">o</label>
+        <i class="fas fa-paint-brush"></i>
+
         <ToggleSwitch handleOnClick={props.toggleMode} id={props.id} />
       </div>
-      <label className="tool-bar-label">
+      <label className="tool-bar-score">
         Generation {props.generation | 0}
       </label>
       <div>

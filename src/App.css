@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 .App {
   text-align: center;
   background-color: #282c34;
@@ -107,8 +109,17 @@
   margin-bottom: 1rem;
 }
 
-.tool-bar-label {
-  font-size: large;
+.tool-bar-score {
+  font-family: "Press Start 2P", cursive;
+  background-color: black;
+  border-radius: 5%;
+  letter-spacing: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: x-small;
+  text-align: left;
 }
 .tool-bar-label-right {
   font-size: large;
