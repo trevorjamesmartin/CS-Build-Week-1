@@ -5,7 +5,7 @@ const ToolBar = (props) => {
   return (
     <span className="tool-bar">
       <div>
-        <i class="fas fa-paint-brush"></i>
+        <i className="fas fa-paint-brush"></i>
 
         <ToggleSwitch handleOnClick={props.toggleMode} id={props.id} />
       </div>
@@ -14,10 +14,10 @@ const ToolBar = (props) => {
       </label>
       <div>
         <button className="death-button" onClick={props.cleanLife}>
-          <i class="fas fa-skull"></i>
+          <i className="fas fa-skull"></i>
         </button>
         <button className="random-button" onClick={props.randomLife}>
-          <i class="fas fa-random"></i>
+          <i className="fas fa-random"></i>
         </button>
       </div>
     </span>

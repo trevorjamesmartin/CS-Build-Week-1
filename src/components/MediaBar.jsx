@@ -33,7 +33,7 @@ const MediaBar = ({
         {!isPlaying ? (
           <i className="fas fa-play"></i>
         ) : (
-          <i class="fas fa-stop"></i>
+          <i className="fas fa-stop"></i>
         )}
       </button>
       <button className="media-button" onClick={handleNext}>
