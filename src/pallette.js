@@ -2,19 +2,45 @@
  * CSS vars defined in App.css
  */
 const appColors = {
-  "--living": "#7983ff",
-  "--dead": "#282c34",
-  "--app_bkg": "#282c34",
-  "--app_color": "white",
+  "--living": "#7983ff", // c
+  "--dead": "#282c34", // a
+  "--app_bkg": "#282c34", // a
+  "--app_color": "white", // b
   "--cell_border": "slategrey",
-  "--switch_on": "#7983ff",
-  "--switch_btn": "white",
-  "--switch_off": `rgba(0, 0, 0, 0.777)`,
-  "--rule_text": "#f6f6f6,",
-  "--score_bkg": `rgba(0, 0, 0, 0.777)`,
-  "--score_text": "#f6f6f6",
-  "--media_btn_bkg": "slategrey",
-  "--media_btn_color": "lightblue",
+  "--switch_on": "#7983ff", // c
+  "--switch_btn": "white", // b
+  "--switch_off": `rgba(0, 0, 0, 0.777)`, // a
+  "--rule_text": "#f6f6f6,", // c
+  "--score_bkg": `rgba(0, 0, 0, 0.777)`, // a
+  "--score_text": "#f6f6f6", // c
+  "--media_btn_bkg": "slategrey", // d
+  "--media_btn_color": "lightblue", // a
+};
+
+function genTheme(abcd) {
+  const { a, b, c, d } = abcd;
+  return {
+    "--living": c,
+    "--dead": a,
+    "--app_bkg": a,
+    "--app_color": b,
+    "--cell_border": d,
+    "--switch_on": c,
+    "--switch_btn": b,
+    "--switch_off": a,
+    "--rule_text": c,
+    "--score_bkg": a,
+    "--score_text": c,
+    "--media_btn_bkg": d,
+    "--media_btn_color": a,
+  };
+}
+
+const test = {
+  a: "#120136", // switch_off, score_bkg, dead
+  b: "#035aa6", // app_color switch_btn
+  c: "#40bad5", // rule_text, score_text, living
+  d: "#fcbf1e", // media_btn_colora
 };
 
 /**

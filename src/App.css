@@ -48,9 +48,10 @@
 .life-cell-dead {
   color: var(--dead);
   background-color: var(--dead);
-  border: 1px var(--cell_border) dotted;
+  border: 1px var(--cell_border) solid;
   width: 20px;
   height: 20px;
+  opacity: 0.5;
 }
 .life-cell-alive {
   color: var(--living);
