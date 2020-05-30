@@ -1,15 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
+:root {
+  --living: #7983ff;
+  --dead: #282c34;
+  --app_bkg: #282c34;
+  --app_color: white;
+  --cell_border: slategrey;
+  --switch_on: #7983ff;
+  --switch_btn: white;
+  --switch_off: rgba(0, 0, 0, 0.777);
+  --rule_text: #f6f6f6;
+  --score_bkg: rgba(0, 0, 0, 0.777);
+  --score_text: #f6f6f6;
+  --media_btn_bkg: slategrey;
+  --media_btn_color: lightblue;
+}
+
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: var(--app_bkg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--app_color);
 }
 
 @keyframes shiftleft {
@@ -30,15 +46,15 @@
 }
 
 .life-cell-dead {
-  color: #282c34;
-  background-color: #282c34;
-  border: 1px slategrey dotted;
+  color: var(--dead);
+  background-color: var(--dead);
+  border: 1px var(--cell_border) dotted;
   width: 20px;
   height: 20px;
 }
 .life-cell-alive {
-  color: #7983ff;
-  background-color: #7983ff;
+  color: var(--living);
+  background-color: var(--living);
   border-radius: 77% 12% 77% 0% / 77% 12% 77% 0%;
   /* animation: shiftleft 1s linear infinite; */
   /* animation: rotate 1s linear infinite; */
@@ -48,7 +64,6 @@
   transform: skewX(15deg);
   /* transform: skewY(-50deg);
   transform: skew(90deg, -50deg); */
-
   width: 20px;
   height: 20px;
 }
@@ -62,7 +77,7 @@
 .life-rules {
   width: 500px;
   font-size: medium;
-  color: #f6f6f6;
+  color: var(--rule_text);
   text-align: left;
 }
 .life-rules-label {
@@ -73,7 +88,7 @@
   display: inline-block;
   width: 40px;
   height: 20px;
-  background-color: rgba(0, 0, 0, 0.777);
+  background-color: var(--switch_off);
   border-radius: 20px;
   transition: all 0.3s;
   margin-right: 1rem;
@@ -85,7 +100,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--switch_btn);
   top: 1px;
   left: 1px;
   transition: all 0.3s;
@@ -95,7 +110,7 @@
   left: 20px;
 }
 .checkbox:checked + .switch {
-  background-color: #7983ff;
+  background-color: var(--switch_on);
 }
 .checkbox {
   display: none;
@@ -111,7 +126,8 @@
 
 .tool-bar-score {
   font-family: "Press Start 2P", cursive;
-  background-color: black;
+  background-color: var(--score_bkg);
+  color: var(--score_text);
   border-radius: 5%;
   letter-spacing: 1px;
   padding-left: 1rem;
@@ -141,8 +157,8 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: slategrey;
-  color: lightblue;
+  background-color: var(--media_btn_bkg);
+  color: var(--media_btn_color);
 }
 
 .media-button .is-playing {
@@ -153,8 +169,8 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: lightblue;
-  color: slategrey;
+  background-color: var(--media_btn_color);
+  color: var(--media_btn_bkg);
 }
 
 .death-button {
@@ -165,8 +181,8 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: slategrey;
-  color: lightblue;
+  background-color: var(--media_btn_bkg);
+  color: var(--media_btn_color);
 }
 
 .random-button {
@@ -177,6 +193,6 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: slategrey;
-  color: lightblue;
+  background-color: var(--media_btn_bkg);
+  color: var(--media_btn_color);
 }
