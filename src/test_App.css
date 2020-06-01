@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-
 :root {
   --living: #7983ff;
   --dead: #282c34;
@@ -14,8 +13,16 @@
   --score_text: #f6f6f6;
   --media_btn_bkg: slategrey;
   --media_btn_color: lightblue;
+  --board_width: 500;
+  --cell_count: 25;
+  /* --cell_width: 20px; */
+  --board_width: calc(100vw - 10px);
+  /* --cell_count: 25; */
+  --cell_width: calc(var(--board_width) / var(--cell_count));
 }
-
+.body {
+  max-width: 500px;
+}
 .App {
   text-align: center;
   background-color: var(--app_bkg);
@@ -49,13 +56,18 @@
   color: var(--dead);
   background-color: var(--dead);
   border: 1px var(--cell_border) solid;
-  width: 20px;
-  height: 20px;
+  width: var(--cell_width);
+  height: var(--cell_width);
   opacity: 0.5;
 }
 .life-cell-alive {
   color: var(--living);
+  border: 1px var(--cell_border) solid;
+
   background-color: var(--living);
+  /* border: none; */
+  width: var(--cell_width);
+  height: var(--cell_width);
   border-radius: 77% 12% 77% 0% / 77% 12% 77% 0%;
   /* animation: shiftleft 1s linear infinite; */
   /* animation: rotate 1s linear infinite; */
@@ -65,18 +77,15 @@
   transform: skewX(15deg);
   /* transform: skewY(-50deg);
   transform: skew(90deg, -50deg); */
-  width: 20px;
-  height: 20px;
 }
-
-.life-board {
+600px .life-board {
   display: flex;
   flex-flow: row wrap;
-  width: 500px;
+  width: var(--board_width);
   overflow: hidden;
 }
 .life-rules {
-  width: 500px;
+  width: var(--board_width);
   font-size: medium;
   color: var(--rule_text);
   text-align: left;
