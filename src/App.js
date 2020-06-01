@@ -10,6 +10,7 @@ import {
   squareCount,
   firstGen,
 } from "./components/engine/Generation";
+import { scaleBoard } from "./components/common/util";
 
 const initialState = {
   squares: [],
@@ -54,6 +55,7 @@ function App() {
       squares,
       speed: state.speed ? state.speed : 500,
     });
+    scaleBoard(squareCount);
     // const speed = state.speed ? state.speed : 500; // milliseconds
     // setState({ ...initialState, squares, speed });
   };
