@@ -10,6 +10,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
+  "main": "build",
   "scripts": {
     "start": "react-scripts start",
     "serve": "serve -s build",
